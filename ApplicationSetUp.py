@@ -60,13 +60,12 @@ def start_application():
     shop.set_inventory(ski(starting_skis), snowboard(starting_snowboards))
 
     active_rentals = {}
-
+    ## I couldn't quite get the class method to work for this. Maybe I was doing something wrong there
     daily_stats = {
-        "Skis Rented Today": 0,
-        "Snowboards Rented Today:": 0,
-        "Today's revenue": 0,
-        }
-
+        "Total skis rented": 0,
+        "Total snowboards rented": 0,
+        "Total revenue": 0.0,
+    }
     main_menu(shop, active_rentals, daily_stats)
 
 #################################
@@ -82,7 +81,7 @@ def main_menu(shop, active_rentals, daily_stats):
         elif choice == "2":
             rental_return(shop, active_rentals, daily_stats)
         elif choice == "3":
-            ## Use the shop class avalible 
+            ## Use the shop class avalible. This gives me an error sometimes, and I don't know why. Tried to debug it 
             shop.display_avalible()
         elif choice == "4":
             ## use the shop daily totals 
@@ -201,9 +200,12 @@ def rental_return(shop, active_rentals, daily_stats):
 ## This calls the main process
 ##################################
 
-if __name__ == "__main__":
-    start_application()
 
+start_application()
+
+
+
+## commented out test case below so I know what is going on here. 
 #def main():
 #    try:
 #        print("=== Testing RentalEquipment / Ski / Snowboard ===")
