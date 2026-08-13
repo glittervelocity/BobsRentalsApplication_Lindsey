@@ -66,23 +66,23 @@ def start_application():
         "Total snowboards rented": 0,
         "Total revenue": 0.0,
     }
-    main_menu(shop, active_rentals, daily_stats)
+    main_menu(shop, active_rentals, daily_stats, shop.display_available)
 
 #################################
 ## This is where we run our main menu
 #################################
 
-def main_menu(shop, active_rentals, daily_stats):
+def main_menu(shop, active_rentals, daily_stats, display_available):
     while True:
         choice = get_menu_choice()
 
         if choice == "1":
-            new_rental(shop, active_rentals, daily_stats)
+            new_rental(shop, active_rentals, daily_stats, display_available)
         elif choice == "2":
-            rental_return(shop, active_rentals, daily_stats)
+            rental_return(shop, active_rentals, daily_stats, display_available)
         elif choice == "3":
             ## Use the shop class avalible. This gives me an error sometimes, and I don't know why. Tried to debug it 
-            shop.display_avalible()
+            shop.display_available()
         elif choice == "4":
             ## use the shop daily totals 
             shop.display_daily_totals()
@@ -123,6 +123,11 @@ def new_rental(shop, active_rentals, daily_stats):
        break
 
     hours = get_rental_period_hours()
+
+## add coupon functionality 
+    coupon_code = input("Coupon code? (optional, press Enter to skip): ")
+    if coupon_code == "":
+        coupon_code = ""
 
 ## add objects to track equipment and customers 
     cust = customer(customer_name, customer_id)
