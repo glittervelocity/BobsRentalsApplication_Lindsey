@@ -77,9 +77,9 @@ def main_menu(shop, active_rentals, daily_stats, display_available):
         choice = get_menu_choice()
 
         if choice == "1":
-            new_rental(shop, active_rentals, daily_stats, display_available)
+            new_rental(shop, active_rentals, daily_stats)
         elif choice == "2":
-            rental_return(shop, active_rentals, daily_stats, display_available)
+            rental_return(shop, active_rentals, daily_stats)
         elif choice == "3":
             ## Use the shop class avalible. This gives me an error sometimes, and I don't know why. Tried to debug it 
             shop.display_available()
@@ -124,7 +124,7 @@ def new_rental(shop, active_rentals, daily_stats):
 
     hours = get_rental_period_hours()
 
-## add coupon functionality 
+## add coupon functionality. This doesn't actually work yet. I would need to think more on getting it to work 
     coupon_code = input("Coupon code? (optional, press Enter to skip): ")
     if coupon_code == "":
         coupon_code = ""
@@ -133,7 +133,7 @@ def new_rental(shop, active_rentals, daily_stats):
     cust = customer(customer_name, customer_id)
     rental_obj = rental(cust, equipment_obj, quantity, hours)
 
-## show estimates 
+## show estimates. The logic for getting best price exists in a differnet class, and I realized that this isn't quite working as intended since it just retunrs the daily rate. I'm a little confused on how to get the estimate to show the best daily rate.  
     estimate = rental_obj.calculate_estimate()
     print (f"Rental estimate: ${estimate}")
 
